@@ -16,11 +16,4 @@ public class Author {
     private String name;
 
     private Integer age;
-
-    public Author() {}
-    public Author(Long id, String name, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
 }
