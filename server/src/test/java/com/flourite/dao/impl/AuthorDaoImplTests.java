@@ -1,6 +1,6 @@
 package com.flourite.dao.impl;
 
-import com.flourite.dao.impl.AuthorDaoImp;
+import com.flourite.dao.TestDataUtil;
 import com.flourite.domain.Author;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,8 +9,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.jdbc.core.JdbcTemplate;
-
-import javax.swing.tree.RowMapper;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -26,7 +24,7 @@ public class AuthorDaoImplTests {
 
     @Test
     public void testThatCreateAuthorGeneratesTheCorrectSql() {
-        Author author = Author.builder().id(1L).name("Eric Tirelo").age(23).build();
+        Author author = TestDataUtil.createAuthorTestA();
         underTest.create(author);
 
         verify(jdbcTemplate).update(
@@ -41,6 +39,14 @@ public class AuthorDaoImplTests {
         verify(jdbcTemplate).query(
                 eq("SELECT id, name, age FROM authors WHERE id = ? LIMIT 1"),
                 ArgumentMatchers.<AuthorDaoImp.AuthorRowMapper>any(), eq(1L)
+        );
+    }
+
+    @Test
+    public void testThatFindManyGeneratesTheCorrectSql() {
+        underTest.find();
+        verify(jdbcTemplate).query(eq("SELECT id, name, age FROM authors "),
+                ArgumentMatchers.<AuthorDaoImp.AuthorRowMapper>any()
         );
     }
 }
