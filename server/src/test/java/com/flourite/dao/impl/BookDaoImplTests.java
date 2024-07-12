@@ -25,7 +25,7 @@ public class BookDaoImplTests {
     @Test
     public void testThatCreateBookGeneratesTheCorrectsSql() {
 
-        Book book = TestDataUtil.createTestBook();
+        Book book = TestDataUtil.createTestBookA();
         undertest.create(book);
 
         verify(jdbcTemplate).update(
@@ -41,6 +41,38 @@ public class BookDaoImplTests {
         verify(jdbcTemplate).query(
                 eq("SELECT isbn, title, author_id FROM books WHERE isbn = ? LIMIT 1"),
                 ArgumentMatchers.<BookDaoImpl.BookRowMapper>any(),
+                eq("010-7-0962-4508-2")
+        );
+    }
+
+    @Test
+    public void testThatFindGeneratesTheCorrectSql() {
+
+        undertest.find();
+        verify(jdbcTemplate).query(
+                eq("SELECT isbn, title, author_id FROM books"),
+                ArgumentMatchers.<BookDaoImpl.BookRowMapper>any()
+        );
+    }
+
+    @Test
+    public void testThatUpdateGeneratesTheCorrectSql() {
+        Book book = TestDataUtil.createTestBookA();
+        undertest.update("010-7-0962-4508-2", book);
+
+        verify(jdbcTemplate).update(
+                eq("UPDATE books SET isbn = ?, title = ?, author_id = ? WHERE isbn = ?"),
+                eq("010-7-0962-4508-2"), eq("Zany Brainiac"), eq(1L), eq("010-7-0962-4508-2")
+        );
+    }
+
+    @Test
+    public void testThatDeleteGeneratesTheCorrectSql() {
+        Book book = TestDataUtil.createTestBookA();
+        undertest.delete("010-7-0962-4508-2");
+
+        verify(jdbcTemplate).update(
+                eq("DELETE FROM books WHERE isbn = ?"),
                 eq("010-7-0962-4508-2")
         );
     }
