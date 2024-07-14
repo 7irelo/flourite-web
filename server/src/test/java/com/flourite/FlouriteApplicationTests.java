@@ -1,4 +1,4 @@
-package com.flourite.dao;
+package com.flourite;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,7 +1,7 @@
 package com.flourite.dao.impl;
 
 import com.flourite.dao.AuthorDao;
-import com.flourite.dao.TestDataUtil;
+import com.flourite.TestDataUtil;
 import com.flourite.domain.Author;
 import com.flourite.domain.Book;
 import org.junit.jupiter.api.Test;

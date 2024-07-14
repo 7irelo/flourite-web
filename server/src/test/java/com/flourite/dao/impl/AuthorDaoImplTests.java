@@ -1,6 +1,6 @@
 package com.flourite.dao.impl;
 
-import com.flourite.dao.TestDataUtil;
+import com.flourite.TestDataUtil;
 import com.flourite.domain.Author;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

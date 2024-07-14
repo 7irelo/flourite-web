@@ -1,4 +1,4 @@
-package com.flourite.dao;
+package com.flourite;
 
 import com.flourite.domain.Author;
 import com.flourite.domain.Book;
