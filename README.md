@@ -1,7 +1,3 @@
-Here’s the updated `README.md` reflecting the use of JDBC instead of Hibernate:
-
----
-
 # Flourite
 
 Welcome to **Flourite**! Flourite is a data visualization tool designed to provide insightful and interactive visualizations for your data. Built using Spring Boot for the server, Vue.js for the client, and PostgreSQL for the database, Flourite offers a powerful and user-friendly platform for analyzing and presenting data.
